@@ -1,0 +1,130 @@
+#include<iostream>
+using namespace std;
+
+//create the individual element
+class box
+{
+public:
+    int datum;
+    box *next;
+    box()
+    {
+        next=NULL;
+    }
+};
+
+//strt the function
+class circle
+{
+public:
+    box *temp;
+    box *head;
+    box *tail;
+    box *current;
+    circle()
+    {
+        head=NULL;
+        tail=NULL;
+        current=NULL;
+    }
+    
+    //insert the function for creating elements
+    int creator(int value)
+    {
+        temp=new box;
+        temp->datum=value;
+        if(head==NULL)
+        {
+            head=temp;
+        }
+        else
+        {
+            tail->next=temp;
+        }
+        tail=temp;
+        temp->next=head;
+    }
+
+//the function for adding elements at a given place
+    int insertat(int pos, int value)
+    {
+        current=head;
+        int a=1;
+        temp=head;
+        while(temp->next != head)
+        {
+            a++;
+            temp=temp->next;
+        }
+        if(pos>a)
+        {
+            cout<<" The list does not contain that many elements "<<endl;
+        }
+        else
+        {
+            a=1;
+            while(pos>a)
+            {
+                a++;
+                current=current->next;
+            }
+            temp->next=current->next;
+            current->next=temp;
+        }
+    }
+
+//funtion to delete the last element
+    void dlete()
+    {
+        int a=1;
+        temp=tail;
+        current=head;
+        while(current->next != tail)
+        {
+            current=current->next;
+        }
+        current->next=head;
+        tail=current;
+        delete temp;
+    }
+
+//counting the elements
+    int counter()
+    {
+        int i=1;
+        current=head;
+        //create the loop that counts the number of elements in the list
+        while(current->next != head)
+        {
+            current=current->next;
+            i++;
+        }
+         return i;
+    }
+
+//displayiong the elements
+       void display()
+     {
+         current=head;
+         while(current->next != head)
+         {
+             cout<<current->datum<<" --> ";
+             current=current->next;
+         }
+         cout<<current->datum;
+         cout<<endl;
+     }
+};
+
+int main()
+{
+    circle l1;
+    l1.creator(1);
+    l1.creator(2);
+    l1.creator(3);
+    l1.creator(4);
+    l1.creator(5);
+    cout<<l1.counter()<<endl;
+    l1.display();
+    return 0;
+}
