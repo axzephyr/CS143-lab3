@@ -69,7 +69,7 @@ using namespace std;
             a++;
             counter=counter->next;
         }
-        if(posit>>a)
+        if(posit>a)
         {
             cout<<"the number at which you want your element doesn't exist!! "<<endl;
         }
@@ -77,7 +77,7 @@ using namespace std;
         {
             counter=head;
             a=1;
-            while(posit-1>>a)
+            while(posit-1>a)
             {
                counter=counter->next;
                a++;
